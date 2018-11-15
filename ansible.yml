@@ -1,0 +1,9 @@
+---
+- name: Todobackend Jenkins Deployment Playbook
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  environment:
+    AWS_DEFAULT_REGION: "{{ lookup('env', 'AWS_DEFAULT_REGION') | default('us-east-1', true) }}"
+  tasks:
+    - include: ecs-deploy.yml

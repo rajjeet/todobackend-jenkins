@@ -1,0 +1,17 @@
+---
+- name: create/update Todobackend Jenkins cf stack
+  cloudformation:
+    stack_name: todobackend-jenkins
+    state: present
+    template: template.yml
+    template_format: yaml
+    template_parameters:
+      VpcId: "{{ vpc_id }}"
+      SubnetId: "{{ subnet_id }}"
+      KeyName: "{{ ec2_keypair }}"
+    tags:
+      Environment: test
+  register: cf_stack
+
+- debug: msg={{ cf_stack }}
+  when: debug is defined
