@@ -76,9 +76,18 @@ Resources:
                 - ec2.amazonaws.com
             Action: 
               - sts:AssumeRole
+      Policies:
+        - PolicyName: "updateStack"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: "Allow"
+                Action: "cloudformation:UpdateStack"
+                Resource: arn:aws:cloudformation:us-east-1:224947627700:stack/todobackend/*
       Path: "/"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role
+        - arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess
   ElbSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
