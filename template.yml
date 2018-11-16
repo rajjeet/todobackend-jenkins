@@ -82,8 +82,17 @@ Resources:
             Version: "2012-10-17"
             Statement: 
               - Effect: "Allow"
-                Action: "cloudformation:UpdateStack"
+                Action: 
+                  - "cloudformation:UpdateStack"
+                  - "cloudformation:CreateStack"
                 Resource: arn:aws:cloudformation:us-east-1:224947627700:stack/todobackend/*
+        - PolicyName: "everythingEcs"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: "Allow"
+                Action: "ecs:*"
+                Resource: '*'
       Path: "/"
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role
@@ -129,7 +138,7 @@ Resources:
       ContainerDefinitions:
         - Name: jenkins
           Image: phullr2/todobackend-jenkins
-          Memory: 950
+          Memory: 850
           PortMappings:
             - ContainerPort: 8080
               HostPort: 8080
