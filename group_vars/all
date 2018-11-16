@@ -1,0 +1,4 @@
+---
+vpc_id: vpc-06303f8355b2df1b3
+subnet_id: subnet-0c14bf193719e4a47
+ec2_keypair: ecs-keypair
